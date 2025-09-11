@@ -1,8 +1,11 @@
+// Flatpickr
 import flatpickr from "flatpickr";
-import iziToast from "izitoast";
-import toastIcon from '../img/Group.svg'
 import "flatpickr/dist/flatpickr.min.css";
+// iziToast
+import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
+import toastIcon from '../img/Group.svg'
+
 
 // 🔹 Елементи інтерфейсу
 const dateInput = document.querySelector("#datetime-picker");
@@ -25,84 +28,67 @@ const options = {
     const selectedTime = selectedDates[0].getTime();
     const now = Date.now();
     userSelectedDate = selectedDates[0];
-    
+
     if (selectedTime <= now) {
-      iziToast.error(
-        {
-          message: "Please choose a date in the future",
-          position: 'topRight',
-          backgroundColor: '#EF4040',
-          iconUrl: toastIcon,
-          messageColor: '#ffffff',
-        })
-       };
-    btnStart.disabled = selectedTime <= now;
-  
+      iziToast.error({
+        message: "Please choose a date in the future",
+        position: "topRight",
+        backgroundColor: "#EF4040",
+        messageColor: "#ffffff",
+      });
+      startBtn.disabled = true;
+    } else {
+      startBtn.disabled = false;
+    }
   },
 };
 
-flatpickr(calendar, options);
+flatpickr(dateInput, options);
 
-btnStart.addEventListener("click", () => {
-  btnStart.disabled = true;
-  calendar.disabled = true;
-   
+startBtn.addEventListener("click", () => {
+  startBtn.disabled = true;
+  dateInput.disabled = true;
 
+  timerId = setInterval(() => {
+    const timeNow = Date.now();
+    const deltaTime = userSelectedDate.getTime() - timeNow;
 
-  const intervalId = setInterval(() => {
-    const timeNow = Date.now()
-    let deltaTimeM = userSelectedDate.getTime() - timeNow;
-    
-
-    const { days, hours, minutes, seconds } = convertMs(deltaTimeM);
-   
-
-    if (deltaTimeM <= 0) {
-      btnStart.disabled = false;
-      calendar.disabled = false;
-      clearInterval(intervalId);
-    } else {
-      updateTimer({ days, hours, minutes, seconds });
-
+    if (deltaTime <= 0) {
+      clearInterval(timerId);
+      updateTimer({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+      dateInput.disabled = false;
+      startBtn.disabled = true; // кнопка залишається неактивною
+      return;
     }
-  
-    
 
+    const { days, hours, minutes, seconds } = convertMs(deltaTime);
+    updateTimer({ days, hours, minutes, seconds });
   }, 1000);
-
-  
 });
 
 function updateTimer({ days, hours, minutes, seconds }) {
-  timerDays.textContent = `${days}`;
-  timerHours.textContent = `${hours}`;
-  timerMinutes.textContent = `${minutes}`;
-  timerSeconds.textContent = `${seconds}`;
-  
+  daysEl.textContent = days;
+  hoursEl.textContent = hours;
+  minutesEl.textContent = minutes;
+  secondsEl.textContent = seconds;
 }
-
-
 
 function addLeadingZero(value) {
   return String(value).padStart(2, "0");
-};
-
+}
 
 function convertMs(ms) {
-  // Number of milliseconds per unit of time
   const second = 1000;
   const minute = second * 60;
   const hour = minute * 60;
   const day = hour * 24;
 
-  // Remaining days
   const days = addLeadingZero(Math.floor(ms / day));
-  // Remaining hours
   const hours = addLeadingZero(Math.floor((ms % day) / hour));
-  // Remaining minutes
   const minutes = addLeadingZero(Math.floor(((ms % day) % hour) / minute));
-  // Remaining seconds
-  const seconds = addLeadingZero(Math.floor((((ms % day) % hour) % minute) / second));
+  const seconds = addLeadingZero(
+    Math.floor((((ms % day) % hour) % minute) / second)
+  );
 
   return { days, hours, minutes, seconds };
 }
