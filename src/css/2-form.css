@@ -1,0 +1,63 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.feedback-form {
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    /* align-items: flex-start; */
+    width: 360px;
+}
+
+.input-email {
+    height: 40px;
+    /* width: 360px; */
+    border: 1px solid #808080;
+    border-radius: 4px;
+}
+
+.input-email:hover {
+    border: 1px solid #000;
+
+
+}
+
+.label {
+    text-align: start;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 8px;
+    font: 400 16px / 1.5 "Montserrat", sans-serif;
+    letter-spacing: 0.04em;
+    color: #2e2f42;
+
+}
+
+
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 10px;
+    width: 95px;
+    height: 40px;
+    border-radius: 8px;
+    border-color: transparent;
+    padding: 8px 16px;
+    background-color: #4e75ff;
+    font: 500 16px / 1.5 "Montserrat", sans-serif;
+    letter-spacing: 0.04em;
+    color: #fff;
+    /* margin: 0 auto; */
+    margin-left: 0;
+}
+
+
+.btn:hover {
+    background-color: #6C8CFF;
+}
