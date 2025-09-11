@@ -1,0 +1,90 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    margin: 40px;
+    display: flex;
+    gap: 40px;
+}
+
+/* Форма */
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 400px;
+    /* загальна ширина форми */
+}
+
+/* Поля вводу */
+.form label {
+    font-size: 18px;
+    font-weight: 500;
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+input[type="number"] {
+    width: 100%;
+    height: 50px;
+    border: 2px solid #000;
+    border-radius: 2px;
+    padding: 10px;
+    font-size: 18px;
+    box-sizing: border-box;
+    outline: none;
+    /* прибирає браузерний стандарт */
+}
+
+/* При фокусі — синя рамка */
+input[type="number"]:focus {
+    border-color: #1a73e8;
+    /* синій колір */
+    box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.3);
+}
+
+/* Радіо-кнопки */
+fieldset {
+    border: 2px solid #000;
+    border-radius: 2px;
+    padding: 14px 12px;
+    width: 100%;
+    box-sizing: border-box;
+
+    display: flex;
+    justify-content: center;
+    /* центруємо вміст */
+    gap: 30px;
+    align-items: center;
+}
+
+legend {
+    font-size: 18px;
+    font-weight: 600;
+    padding: 0 6px;
+}
+
+fieldset label {
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+}
+
+/* Кнопка */
+button[type="submit"] {
+    width: 100%;
+    height: 50px;
+    font-size: 18px;
+    font-weight: 500;
+    border: 2px solid #000;
+    border-radius: 2px;
+    background-color: #f3f3f3;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #e0e0e0;
+}
