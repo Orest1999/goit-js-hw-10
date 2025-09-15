@@ -35,7 +35,15 @@ form.addEventListener("submit", (event) => {
         position: "topRight",
       });
     })
-    .finally(() => {
-      form.reset(); 
+  
+  function showToast(message, bgColor) {
+    iziToast.show({
+      message,
+      position: "topRight",
+      icon: "",
+      backgroundColor: bgColor,
+      messageColor: "#ffffff",
     });
+
+  }
 });
