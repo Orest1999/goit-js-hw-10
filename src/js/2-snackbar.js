@@ -34,5 +34,8 @@ form.addEventListener("submit", (event) => {
         message: `❌ Rejected promise in ${delay}ms`,
         position: "topRight",
       });
+    })
+    .finally(() => {
+      form.reset(); 
     });
 });
