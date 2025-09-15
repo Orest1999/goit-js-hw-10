@@ -1,4 +1,3 @@
-
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 
@@ -44,7 +43,7 @@ function handlerSubmit(event) {
         iziToast.show({
             message,
             position: "topRight",
-            icon: "", 
+            icon: "", // без іконки
             backgroundColor: bgColor,
             messageColor: "#ffffff",
         });
